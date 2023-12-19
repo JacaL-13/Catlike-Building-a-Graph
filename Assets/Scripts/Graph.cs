@@ -8,10 +8,21 @@ public class Graph : MonoBehaviour
     [SerializeField]
     Transform pointPrefab;
 
-    [SerializeField, Range(10, 100)]
+    [SerializeField, Range(10, 500)]
     int resolution = 10;
 
     Transform[] points;
+
+    [SerializeField]
+    enum FunctionName
+    {
+        Wave,
+        MultiWave,
+        Ripple
+    }
+
+    [SerializeField]
+    FunctionName functionName;
 
     void Awake()
     {
@@ -36,12 +47,14 @@ public class Graph : MonoBehaviour
 
     void Update()
     {
-		float time = Time.time;
+		FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
+		
+        float time = Time.time;
         for (int i = 0; i < points.Length; i++)
         {
             Transform point = points[i];
             Vector3 position = point.localPosition;
-            position.y = Mathf.Sin(Mathf.PI * (position.x + time));
+            position.y = f(position.x, time);
             point.localPosition = position;
         }
     }
