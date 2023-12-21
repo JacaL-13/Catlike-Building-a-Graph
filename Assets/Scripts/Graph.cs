@@ -13,16 +13,19 @@ public class Graph : MonoBehaviour
 
     Transform[] points;
 
-    [SerializeField]
-    enum FunctionName
-    {
-        Wave,
-        MultiWave,
-        Ripple
-    }
+    // [SerializeField]
+    // enum FunctionName
+    // {
+    //     Wave,
+    //     MultiWave,
+    //     Ripple
+    // }
 
-    [SerializeField]
-    FunctionName functionName;
+    // [SerializeField]
+    // FunctionName functionName;
+
+	[SerializeField, Range(0, 2)]
+	int function;
 
     void Awake()
     {
